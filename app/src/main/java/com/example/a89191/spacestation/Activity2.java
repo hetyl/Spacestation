@@ -8,22 +8,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Activity2 extends AppCompatActivity  implements View.OnClickListener {
     ImageButton arrow1;
     ImageButton start;
+    String[] list = new String[5];
     TextView question;
     int i;
-    DataBaseHelper myDbHelper = new DataBaseHelper(this);
+    int id = DatabaseAccess.id;
 
-    private Cursor employees;
-    private MyDatabase db;
+    //DataBaseHelper myDbHelper = new DataBaseHelper(this);
+
+    //private Cursor employees;
+    //private MyDatabase db;
 
    // Cursor c = null;
 
@@ -43,30 +48,24 @@ public class Activity2 extends AppCompatActivity  implements View.OnClickListene
         findViewById(R.id.star8_2).setRotation(115);
         findViewById(R.id.star9_2).setRotation(15);
 
-        /* mDBHelper = new DataBaseHelper(this);
 
-        try {
-            mDBHelper.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        try {
-            mDb = mDBHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        } */
 
         arrow1= (ImageButton) findViewById(R.id.arrow1);
         arrow1.setOnClickListener(this);
         start= (ImageButton) findViewById(R.id.start);
         start.setOnClickListener(this);
 
-        myDbHelper = new DataBaseHelper(this);
+        this.question = (TextView) findViewById(R.id.question);
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
 
-       //  mDatabaseHelper = new DatabaseHelper(this, "questmath", null, 1);
 
-        //   mSqLiteDatabase = mDatabaseHelper.getWritableDatabase();
+        String[] list = databaseAccess.getQuotes(id);
+        databaseAccess.close();
+
+        //ArrayAdapter<String> text = new ArrayAdapter<String>(this, android.R.layout., quotes);
+
+
 
         // ContentValues values = new ContentValues();
 
@@ -116,7 +115,7 @@ public class Activity2 extends AppCompatActivity  implements View.OnClickListene
 
             case R.id.start: i++;
                  if (i==1) {
-                     try {
+                     /* try {
                          myDbHelper.createDataBase();
                      } catch (IOException ioe) {
                          throw new Error("Unable to create database");
@@ -126,8 +125,12 @@ public class Activity2 extends AppCompatActivity  implements View.OnClickListene
                          myDbHelper.openDataBase();
                      }catch(SQLException sqle){
                          throw sqle;
-                     }
+                     } */
                      start.setImageDrawable(getResources().getDrawable(R.drawable.finish));
+
+                     question.setText(DatabaseAccess.Question.getQuestion());
+                     id++;
+
             } else {
 
                  }
