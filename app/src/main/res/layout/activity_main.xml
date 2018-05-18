@@ -200,7 +200,7 @@
                 android:id="@+id/star7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="180dp"
                 android:layout_marginLeft="50dp"
                 app:srcCompat="@drawable/star" />
 
@@ -249,7 +249,7 @@
                 android:id="@+id/star12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="260dp"
+                android:layout_marginTop="300dp"
                 android:layout_marginLeft="150dp"
                 app:srcCompat="@drawable/star" />
 

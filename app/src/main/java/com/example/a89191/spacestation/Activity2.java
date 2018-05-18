@@ -24,6 +24,7 @@ public class Activity2 extends AppCompatActivity  implements View.OnClickListene
     TextView question;
     int i;
     int id = DatabaseAccess.id;
+    //String questionn;
 
     //DataBaseHelper myDbHelper = new DataBaseHelper(this);
 
@@ -60,7 +61,7 @@ public class Activity2 extends AppCompatActivity  implements View.OnClickListene
         databaseAccess.open();
 
 
-        String[] list = databaseAccess.getQuotes(id);
+        //String[] list = databaseAccess.getQuotes(id);
         databaseAccess.close();
 
         //ArrayAdapter<String> text = new ArrayAdapter<String>(this, android.R.layout., quotes);
@@ -127,8 +128,8 @@ public class Activity2 extends AppCompatActivity  implements View.OnClickListene
                          throw sqle;
                      } */
                      start.setImageDrawable(getResources().getDrawable(R.drawable.finish));
-
-                     question.setText(DatabaseAccess.Question.getQuestion());
+                     String questionnn  = DatabaseAccess.questionn.getQuotes(id);
+                     //question.setText(DatabaseAccess.qetQuestion(id));
                      id++;
 
             } else {

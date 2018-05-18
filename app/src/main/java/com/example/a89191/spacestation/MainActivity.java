@@ -1,13 +1,15 @@
 package com.example.a89191.spacestation;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
     Button play;
     Button score;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.star18).setRotation(35);
         findViewById(R.id.star20).setRotation(300);
         findViewById(R.id.star8).setRotation(165);
+        //ImageView meteorite = (ImageView)  findViewById(R.id.meteorite);
+       // float density = getApplicationContext().getResources().getDisplayMetrics().density;
+        //meteorite.setLayoutParams(new ActionBar.LayoutParams((int) (density * 40), (int) (density * 80)));
         play= (Button) findViewById(R.id.play);
         play.setOnClickListener(this);
 

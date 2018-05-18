@@ -11,12 +11,18 @@ import java.util.List;
 
 
 public class DatabaseAccess {
-    static int id=0;
+    static int id=1;
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private static DatabaseAccess instance;
 
     String[] list = new String[5];
+    static public String questions;
+    static public String answer1;
+    static public String answer2;
+    static public String answer3;
+    static public String answer4;
+    static DatabaseAccess questionn;
 
     private DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
@@ -43,7 +49,7 @@ public class DatabaseAccess {
     } */
 
 
-    class Question {
+   /* class Question {
         private String question1;
         private String[] answers = new String[4];
         public Question(String question, String[] answers) {
@@ -53,31 +59,35 @@ public class DatabaseAccess {
             this.answers[2] = list[3];
             this.answers[3] = list[4];
         }
-        public String getQuestion() {
-            return question1;
-        }
-    }
+        //public String getQuestion() {
+            //return this.question1;
+       // }
+    } */
+
+    //static public String getQuestion (int id) {
+    //    return (questions);
+    //}
 
 
-    public String[] getQuotes(int id) {
+    public String getQuotes(int id) {
 
-        Cursor cursor = database.rawQuery("SELECT * FROM questions", null);
+        Cursor cursor = database.rawQuery("SELECT * FROM questions where id==id", null);
         cursor.moveToFirst();
-        String[] list = new String[5];
+       // String[] list = new String[5];
         //int k=2;
 
         while (!cursor.isAfterLast()) {
 // String[] answers = {cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)};
 //list.add(cursor.getString(1));
-            list[0] = cursor.getString(2);
-            list[1] = cursor.getString(3);
-            list[2] = cursor.getString(4);
-            list[3] = cursor.getString(5);
-            list[4] = cursor.getString(6);
+            questions = cursor.getString(2);
+            answer1 = cursor.getString(3);
+            answer2 = cursor.getString(4);
+            answer3 = cursor.getString(5);
+            answer4 = cursor.getString(6);
            // k++;
             cursor.moveToNext();
         }
         cursor.close();
-        return list;
+        return this.questions;
     }
 }
