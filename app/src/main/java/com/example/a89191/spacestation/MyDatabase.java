@@ -8,7 +8,7 @@ import com.example.a89191.spacestation.SQLiteAssetHelper;
 
 public class MyDatabase extends SQLiteAssetHelper {
 
-    private static final String DATABASE_NAME = "quest_math.db";
+    private static final String DATABASE_NAME = "quest_mathh.db";
     private static final int DATABASE_VERSION = 1;
 
     public MyDatabase(Context context) {

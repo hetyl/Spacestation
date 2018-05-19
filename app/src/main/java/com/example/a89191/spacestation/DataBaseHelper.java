@@ -13,7 +13,7 @@ import java.io.OutputStream;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static String DB_PATH = "/data/data/com/example/a89191/spacestation/databases/";
-    private static String DB_NAME = "databases/quest_math.db";
+    private static String DB_NAME = "databases/quest_mathh.db";
     private SQLiteDatabase myDataBase;
     private final Context mContext;
 
