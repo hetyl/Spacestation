@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 public class Activity3 extends AppCompatActivity implements View.OnClickListener {
     ImageButton arrow2;
-    int[] score = new int[10];
-    String[] name = new String [10];
+    static int[] score = new int[10];
+    static String[] name = new String [10];
     TextView score1;
     TextView score2;
     TextView score3;
@@ -43,8 +43,8 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
 //           name[i]=null;
 //        }
         int newScore=EnterNick.scoreNick;
-        String newName = EnterNick.name;
-        for (int i=0; i<10; i++) {
+        String newName = EnterNick.newName;
+        for (int i=0; i<=9; i++) {
             if (newScore>score[i]) {
                 for (int j=9; j>i; j--) {
                  score [j]=score[j-1];
@@ -53,11 +53,13 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
                 score[i]=newScore;
                 name[i]=newName;
                 newScore=0;
+                newName=null;
                 //score[i+1]=score[i]
                // score[i]=newScore;
                // newScore=0;
             }
         }
+        EnterNick.scoreNick=0;
         for (int i=0; i<10; i++) {
             if (score[i]>0) {if (i==0) {score1.setText("1. " +name[0] + " " + String.valueOf(score[0]) );}
                 if (i==1) {score2.setText("2. "+ name[1] + " " + String.valueOf(score[1]) );}

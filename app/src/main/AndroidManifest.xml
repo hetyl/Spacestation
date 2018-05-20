@@ -27,7 +27,8 @@
         <activity
             android:name=".Activity4"
             android:screenOrientation="portrait" />
-        <activity android:name=".EnterNick"></activity>
+        <activity android:name=".EnterNick"
+                  android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/satellitestation" />
 
             <ImageView
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 app:srcCompat="@drawable/meteorite"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="300dp"
                 tools:id="meteorite" />
 
             <ImageView
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="?android:attr/selectableItemBackground"
-            app:srcCompat="@drawable/question1" />
+            app:srcCompat="@drawable/question" />
 
     </LinearLayout>
 
@@ -286,7 +286,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="300dp"
         android:gravity="right"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"

@@ -17,7 +17,7 @@ public class EnterNick extends AppCompatActivity implements View.OnClickListener
     int i=0;
     EditText editText1;
     static int scoreNick;
-    static String name;
+    static String newName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,10 @@ public class EnterNick extends AppCompatActivity implements View.OnClickListener
                                            if (event.getAction() == KeyEvent.ACTION_DOWN &&
                                                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
                                                if (editText1 != null) {
-                                                   name = editText1.getText().toString();
+                                                   newName = editText1.getText().toString();
                                                    scoreNick=Activity2.score;
                                                    i=1;
+                                                   textView1.setText("");
                                                    return true;
                                                }
                                            } else {
@@ -85,6 +86,7 @@ public class EnterNick extends AppCompatActivity implements View.OnClickListener
 
      switch (v.getId()) {
         case R.id.next: if (i==1) {
+            textView1.setText("");
             Intent intent = new Intent(this, Activity3.class);
             startActivity(intent);
         } else {

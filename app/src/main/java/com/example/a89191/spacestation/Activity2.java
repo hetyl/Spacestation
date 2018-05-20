@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,9 @@ import java.util.List;
 public class Activity2 extends AppCompatActivity implements View.OnClickListener {
     ImageButton arrow1;
     ImageButton start;
+    ImageView heart1;
+    ImageView heart2;
+    ImageView heart3;
     Button answer1;
     Button answer2;
     Button answer3;
@@ -32,6 +36,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     DatabaseAccess databaseAccess;
     static int score=0;
     TextView score2;
+    static int life=3;
 
 
     @Override
@@ -56,6 +61,9 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
 
         this.question = (TextView) findViewById(R.id.question);
         this.score2 = (TextView) findViewById(R.id.score2);
+        this.heart1 = (ImageView) findViewById(R.id.heart1);
+        this.heart2 = (ImageView) findViewById(R.id.heart2);
+        this.heart3 = (ImageView) findViewById(R.id.heart3);
         answer1= (Button) findViewById(R.id.answer1);
         answer1.setOnClickListener(this);
         answer2= (Button) findViewById(R.id.answer2);
@@ -90,6 +98,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 if ((i % 2)==1) {
                     id=1;
                     score=0;
+                    life=3;
                     start.setImageDrawable(getResources().getDrawable(R.drawable.finish));
                     questions = databaseAccess.getQuotes(id);
                     question.setText(questions[0]);
@@ -105,33 +114,61 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.answer1:
-                if (id==7 || id==9) {
-                    score = score + 10;
-                    score2.setText(String.valueOf(score));
-                }
-                if (id==15) {
-                    score = score + 15;
-                    score2.setText(String.valueOf(score));
-                }
-                if (id==20) {
-                    score = score + 20;
-                    score2.setText(String.valueOf(score));
-                    question.setText("Click on the button 'finish'");
-                    answer1.setText(null);
-                    answer2.setText(null);
-                    answer3.setText(null);
-                    answer4.setText(null);
+                if ((i%2)==1) {
+                    if (id == 7 || id == 9) {
+                        score = score + 10;
+                        score2.setText(String.valueOf(score));
+                    }
+                    if (id == 15) {
+                        score = score + 15;
+                        score2.setText(String.valueOf(score));
+                    }
+                    if (id == 20) {
+                        score = score + 20;
+                        score2.setText(String.valueOf(score));
+                        id=0;
+                        question.setText("Click on the button 'finish'");
+                        answer1.setText(null);
+                        answer2.setText(null);
+                        answer3.setText(null);
+                        answer4.setText(null);
+                        break;
+                    }
+                    if (id == 1 || id == 2 || id == 3 || id == 4 || id == 5 || id == 6 || id == 8 || id == 10 || id == 11 || id == 12 || id == 13 || id == 14 || id == 16 || id == 17 || id == 18 || id == 19) {
+                        if (life == 3) {
+                            heart3.setImageDrawable(null);
+                            life = 2;
+                        } else if (life == 2) {
+                            heart2.setImageDrawable(null);
+                            life = 1;
+                        } else if (life == 1) {
+                            heart1.setImageDrawable(null);
+                            life = 0;
+                            id=0;
+                        }
+                    }
+                    if (life == 0) {
+                        id=0;
+                        question.setText("Click on the button 'finish'");
+                        answer1.setText(null);
+                        answer2.setText(null);
+                        answer3.setText(null);
+                        answer4.setText(null);
+                        break;
+                    }
+                    id++;
+                    questions = databaseAccess.getQuotes(id);
+                    question.setText(questions[0]);
+                    answer1.setText(questions[1]);
+                    answer2.setText(questions[2]);
+                    answer3.setText(questions[3]);
+                    answer4.setText(questions[4]);
+                    break;
+                } else {
                     break;
                 }
-                id++;
-                questions = databaseAccess.getQuotes(id);
-                question.setText(questions[0]);
-                answer1.setText(questions[1]);
-                answer2.setText(questions[2]);
-                answer3.setText(questions[3]);
-                answer4.setText(questions[4]);
-                break;
             case R.id.answer2:
+                if ((i%2)==1) {
                 if (id==2 || id==3) {
                     score = score + 5;
                     score2.setText(String.valueOf(score));
@@ -145,6 +182,29 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     score2.setText(String.valueOf(score));
                 }
                 if (id==20) {
+                    id=0;
+                    question.setText("Click on the button 'finish'");
+                    answer1.setText(null);
+                    answer2.setText(null);
+                    answer3.setText(null);
+                    answer4.setText(null);
+                    break;
+                }
+                if (id==1 || id ==4 || id ==5 || id ==6 || id ==7 || id ==8 || id ==9 || id ==10 || id ==14 || id ==15 || id ==16 || id ==19) {
+                    if (life==3) {
+                        heart3.setImageDrawable(null);
+                        life=2;
+                    } else if (life==2) {
+                        heart2.setImageDrawable(null);
+                        life=1;
+                    } else if (life==1) {
+                        heart1.setImageDrawable(null);
+                        life=0;
+                        id=0;
+                    }
+                }
+                if (life==0) {
+                    id=0;
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -160,7 +220,11 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 answer3.setText(questions[3]);
                 answer4.setText(questions[4]);
                 break;
+                } else {
+                    break;
+                }
             case R.id.answer3:
+                if ((i%2)==1) {
                 if (id==1 || id==4) {
                     score = score + 5;
                     score2.setText(String.valueOf(score));
@@ -178,6 +242,29 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     score2.setText(String.valueOf(score));
                 }
                 if (id==20) {
+                    id=0;
+                    question.setText("Click on the button 'finish'");
+                    answer1.setText(null);
+                    answer2.setText(null);
+                    answer3.setText(null);
+                    answer4.setText(null);
+                    break;
+                }
+                if (id==2 || id ==3 || id ==5 || id ==6 || id ==7 || id ==8 || id ==9 || id ==11 || id ==12 || id ==13 || id ==15 || id ==16 || id ==17 || id ==18) {
+                    if (life==3) {
+                        heart3.setImageDrawable(null);
+                        life=2;
+                    } else if (life==2) {
+                        heart2.setImageDrawable(null);
+                        life=1;
+                    } else if (life==1) {
+                        heart1.setImageDrawable(null);
+                        life=0;
+                        id=0;
+                    }
+                }
+                if (life==0) {
+                    id=0;
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -193,7 +280,11 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 answer3.setText(questions[3]);
                 answer4.setText(questions[4]);
                 break;
+                } else {
+                    break;
+                }
             case R.id.answer4:
+                if ((i%2)==1) {
                 if (id==5) {
                     score = score + 5;
                     score2.setText(String.valueOf(score));
@@ -207,6 +298,29 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     score2.setText(String.valueOf(score));
                 }
                 if (id==20) {
+                    id=0;
+                    question.setText("Click on the button 'finish'");
+                    answer1.setText(null);
+                    answer2.setText(null);
+                    answer3.setText(null);
+                    answer4.setText(null);
+                    break;
+                }
+                if (id==1 || id ==2 || id ==3 || id ==4 || id ==7 || id ==9 || id ==10 || id ==11 || id ==12 || id ==13 || id ==14 || id ==15 || id ==17 || id ==18 || id ==19) {
+                    if (life==3) {
+                        heart3.setImageDrawable(null);
+                        life=2;
+                    } else if (life==2) {
+                        heart2.setImageDrawable(null);
+                        life=1;
+                    } else if (life==1) {
+                        heart1.setImageDrawable(null);
+                        life=0;
+                        id=0;
+                    }
+                }
+                if (life==0) {
+                    id=0;
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -222,9 +336,13 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 answer3.setText(questions[3]);
                 answer4.setText(questions[4]);
                 break;
+                } else {
+                    break;
+                }
 
             default:
                 break;
         }
     }
 }
+//таймер

@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="fitEnd"
-                app:srcCompat="@drawable/satellite1mb" />
+                app:srcCompat="@drawable/satellite" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -371,7 +371,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
-            app:srcCompat="@drawable/arrowmb" />
+            app:srcCompat="@drawable/arrow" />
 
         <ImageView
             android:id="@+id/star9_2"
