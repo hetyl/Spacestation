@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.CountDownTimer;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,6 +38,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
     static int score=0;
     TextView score2;
     static int life=3;
+    TextView time;
+    CountDownTimer timer;
 
 
     @Override
@@ -60,6 +63,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
         start.setOnClickListener(this);
 
         this.question = (TextView) findViewById(R.id.question);
+        this.time = (TextView) findViewById(R.id.time);
         this.score2 = (TextView) findViewById(R.id.score2);
         this.heart1 = (ImageView) findViewById(R.id.heart1);
         this.heart2 = (ImageView) findViewById(R.id.heart2);
@@ -91,6 +95,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
             case R.id.arrow1:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                MainActivity.k=1;
+                MainActivity.p=0;
                 break;
 
             case R.id.start:
@@ -106,15 +112,177 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     answer2.setText(questions[2]);
                     answer3.setText(questions[3]);
                     answer4.setText(questions[4]);
-                    //id++;
+                    timer = new CountDownTimer(15000, 1000) {
 
-                } else {Intent intent1 = new Intent(this, EnterNick.class);
+                        public void onTick(long millisUntilFinished) {
+                            time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            heart3.setImageDrawable(null);
+                            life = 2;
+                            id++;
+                            questions = databaseAccess.getQuotes(id);
+                            question.setText(questions[0]);
+                            answer1.setText(questions[1]);
+                            answer2.setText(questions[2]);
+                            answer3.setText(questions[3]);
+                            answer4.setText(questions[4]);
+                            timer =  new CountDownTimer(15000, 1000) {
+
+                                public void onTick(long millisUntilFinished) {
+                                    time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                }
+
+                                public void onFinish() {
+                                    heart2.setImageDrawable(null);
+                                    life = 1;
+                                    id++;
+                                    questions = databaseAccess.getQuotes(id);
+                                    question.setText(questions[0]);
+                                    answer1.setText(questions[1]);
+                                    answer2.setText(questions[2]);
+                                    answer3.setText(questions[3]);
+                                    answer4.setText(questions[4]);
+                                    timer =  new CountDownTimer(15000, 1000) {
+
+                                        public void onTick(long millisUntilFinished) {
+                                            time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                        }
+
+                                        public void onFinish() {
+                                            heart1.setImageDrawable(null);
+                                            life = 0;
+                                            id=0;
+                                            question.setText("Click on the button 'finish'");
+                                            answer1.setText(null);
+                                            answer2.setText(null);
+                                            answer3.setText(null);
+                                            answer4.setText(null);
+
+                                        }
+                                    }.start();
+                                }
+                            }.start();
+                        }
+                    }.start();
+                    //id++;
+                }  else {Intent intent1 = new Intent(this, EnterNick.class);
                 startActivity(intent1);
                 }
                 break;
 
             case R.id.answer1:
                 if ((i%2)==1) {
+                    timer.cancel();
+                  if (id!=0)  {timer = new CountDownTimer(15000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            id++;
+                            if (life == 3) {
+                                heart3.setImageDrawable(null);
+                                life = 2;
+                            } else if (life == 2) {
+                                heart2.setImageDrawable(null);
+                                life = 1;
+                            } else if (life == 1) {
+                                heart1.setImageDrawable(null);
+                                life = 0;
+                                id=0;
+                            }
+                            if (id!=0) {
+                                questions = databaseAccess.getQuotes(id);
+                                question.setText(questions[0]);
+                                answer1.setText(questions[1]);
+                                answer2.setText(questions[2]);
+                                answer3.setText(questions[3]);
+                                answer4.setText(questions[4]);
+                                timer = new CountDownTimer(15000, 1000) {
+
+                                    public void onTick(long millisUntilFinished) {
+                                        time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                    }
+
+                                    public void onFinish() {
+                                        id++;
+                                        if (life == 3) {
+                                            heart3.setImageDrawable(null);
+                                            life = 2;
+                                        } else if (life == 2) {
+                                            heart2.setImageDrawable(null);
+                                            life = 1;
+                                        } else if (life == 1) {
+                                            heart1.setImageDrawable(null);
+                                            life = 0;
+                                            id=0;
+                                        }
+                                        if (id!=0) {
+                                            questions = databaseAccess.getQuotes(id);
+                                            question.setText(questions[0]);
+                                            answer1.setText(questions[1]);
+                                            answer2.setText(questions[2]);
+                                            answer3.setText(questions[3]);
+                                            answer4.setText(questions[4]);
+                                            timer =  new CountDownTimer(15000, 1000) {
+
+                                                public void onTick(long millisUntilFinished) {
+                                                    time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                }
+
+                                                public void onFinish() {
+                                                    id++;
+                                                    if (life == 3) {
+                                                        heart3.setImageDrawable(null);
+                                                        life = 2;
+                                                    } else if (life == 2) {
+                                                        heart2.setImageDrawable(null);
+                                                        life = 1;
+                                                    } else if (life == 1) {
+                                                        heart1.setImageDrawable(null);
+                                                        life = 0;
+                                                        id=0;
+                                                    }
+                                                    if (id!=0) {
+                                                        questions = databaseAccess.getQuotes(id);
+                                                        question.setText(questions[0]);
+                                                        answer1.setText(questions[1]);
+                                                        answer2.setText(questions[2]);
+                                                        answer3.setText(questions[3]);
+                                                        answer4.setText(questions[4]);
+
+                                                    } else {
+                                                        question.setText("Click on the button 'finish'");
+                                                        answer1.setText(null);
+                                                        answer2.setText(null);
+                                                        answer3.setText(null);
+                                                        answer4.setText(null);
+                                                    }
+                                                }
+                                            }.start();
+
+                                        } else {
+                                            question.setText("Click on the button 'finish'");
+                                            answer1.setText(null);
+                                            answer2.setText(null);
+                                            answer3.setText(null);
+                                            answer4.setText(null);
+                                        }
+                                    }
+                                }.start();
+
+                            } else {
+                                question.setText("Click on the button 'finish'");
+                                answer1.setText(null);
+                                answer2.setText(null);
+                                answer3.setText(null);
+                                answer4.setText(null);
+                            }
+                        }
+                    }.start();}
                     if (id == 7 || id == 9) {
                         score = score + 10;
                         score2.setText(String.valueOf(score));
@@ -169,6 +337,115 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
             case R.id.answer2:
                 if ((i%2)==1) {
+                    timer.cancel();
+                    if (id!=0)  {timer = new CountDownTimer(15000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            id++;
+                            if (life == 3) {
+                                heart3.setImageDrawable(null);
+                                life = 2;
+                            } else if (life == 2) {
+                                heart2.setImageDrawable(null);
+                                life = 1;
+                            } else if (life == 1) {
+                                heart1.setImageDrawable(null);
+                                life = 0;
+                                id=0;
+                            }
+                            if (id!=0) {
+                                questions = databaseAccess.getQuotes(id);
+                                question.setText(questions[0]);
+                                answer1.setText(questions[1]);
+                                answer2.setText(questions[2]);
+                                answer3.setText(questions[3]);
+                                answer4.setText(questions[4]);
+                                timer = new CountDownTimer(15000, 1000) {
+
+                                    public void onTick(long millisUntilFinished) {
+                                        time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                    }
+
+                                    public void onFinish() {
+                                        id++;
+                                        if (life == 3) {
+                                            heart3.setImageDrawable(null);
+                                            life = 2;
+                                        } else if (life == 2) {
+                                            heart2.setImageDrawable(null);
+                                            life = 1;
+                                        } else if (life == 1) {
+                                            heart1.setImageDrawable(null);
+                                            life = 0;
+                                            id=0;
+                                        }
+                                        if (id!=0) {
+                                            questions = databaseAccess.getQuotes(id);
+                                            question.setText(questions[0]);
+                                            answer1.setText(questions[1]);
+                                            answer2.setText(questions[2]);
+                                            answer3.setText(questions[3]);
+                                            answer4.setText(questions[4]);
+                                            timer =  new CountDownTimer(15000, 1000) {
+
+                                                public void onTick(long millisUntilFinished) {
+                                                    time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                }
+
+                                                public void onFinish() {
+                                                    id++;
+                                                    if (life == 3) {
+                                                        heart3.setImageDrawable(null);
+                                                        life = 2;
+                                                    } else if (life == 2) {
+                                                        heart2.setImageDrawable(null);
+                                                        life = 1;
+                                                    } else if (life == 1) {
+                                                        heart1.setImageDrawable(null);
+                                                        life = 0;
+                                                        id=0;
+                                                    }
+                                                    if (id!=0) {
+                                                        questions = databaseAccess.getQuotes(id);
+                                                        question.setText(questions[0]);
+                                                        answer1.setText(questions[1]);
+                                                        answer2.setText(questions[2]);
+                                                        answer3.setText(questions[3]);
+                                                        answer4.setText(questions[4]);
+
+                                                    } else {
+                                                        question.setText("Click on the button 'finish'");
+                                                        answer1.setText(null);
+                                                        answer2.setText(null);
+                                                        answer3.setText(null);
+                                                        answer4.setText(null);
+                                                    }
+                                                }
+                                            }.start();
+
+                                        } else {
+                                            question.setText("Click on the button 'finish'");
+                                            answer1.setText(null);
+                                            answer2.setText(null);
+                                            answer3.setText(null);
+                                            answer4.setText(null);
+                                        }
+                                    }
+                                }.start();
+
+                            } else {
+                                question.setText("Click on the button 'finish'");
+                                answer1.setText(null);
+                                answer2.setText(null);
+                                answer3.setText(null);
+                                answer4.setText(null);
+                            }
+                        }
+                    }.start();}
                 if (id==2 || id==3) {
                     score = score + 5;
                     score2.setText(String.valueOf(score));
@@ -225,6 +502,115 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
             case R.id.answer3:
                 if ((i%2)==1) {
+                    timer.cancel();
+                    if (id!=0)  {timer = new CountDownTimer(15000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            id++;
+                            if (life == 3) {
+                                heart3.setImageDrawable(null);
+                                life = 2;
+                            } else if (life == 2) {
+                                heart2.setImageDrawable(null);
+                                life = 1;
+                            } else if (life == 1) {
+                                heart1.setImageDrawable(null);
+                                life = 0;
+                                id=0;
+                            }
+                            if (id!=0) {
+                                questions = databaseAccess.getQuotes(id);
+                                question.setText(questions[0]);
+                                answer1.setText(questions[1]);
+                                answer2.setText(questions[2]);
+                                answer3.setText(questions[3]);
+                                answer4.setText(questions[4]);
+                                timer = new CountDownTimer(15000, 1000) {
+
+                                    public void onTick(long millisUntilFinished) {
+                                        time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                    }
+
+                                    public void onFinish() {
+                                        id++;
+                                        if (life == 3) {
+                                            heart3.setImageDrawable(null);
+                                            life = 2;
+                                        } else if (life == 2) {
+                                            heart2.setImageDrawable(null);
+                                            life = 1;
+                                        } else if (life == 1) {
+                                            heart1.setImageDrawable(null);
+                                            life = 0;
+                                            id=0;
+                                        }
+                                        if (id!=0) {
+                                            questions = databaseAccess.getQuotes(id);
+                                            question.setText(questions[0]);
+                                            answer1.setText(questions[1]);
+                                            answer2.setText(questions[2]);
+                                            answer3.setText(questions[3]);
+                                            answer4.setText(questions[4]);
+                                            timer =  new CountDownTimer(15000, 1000) {
+
+                                                public void onTick(long millisUntilFinished) {
+                                                    time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                }
+
+                                                public void onFinish() {
+                                                    id++;
+                                                    if (life == 3) {
+                                                        heart3.setImageDrawable(null);
+                                                        life = 2;
+                                                    } else if (life == 2) {
+                                                        heart2.setImageDrawable(null);
+                                                        life = 1;
+                                                    } else if (life == 1) {
+                                                        heart1.setImageDrawable(null);
+                                                        life = 0;
+                                                        id=0;
+                                                    }
+                                                    if (id!=0) {
+                                                        questions = databaseAccess.getQuotes(id);
+                                                        question.setText(questions[0]);
+                                                        answer1.setText(questions[1]);
+                                                        answer2.setText(questions[2]);
+                                                        answer3.setText(questions[3]);
+                                                        answer4.setText(questions[4]);
+
+                                                    } else {
+                                                        question.setText("Click on the button 'finish'");
+                                                        answer1.setText(null);
+                                                        answer2.setText(null);
+                                                        answer3.setText(null);
+                                                        answer4.setText(null);
+                                                    }
+                                                }
+                                            }.start();
+
+                                        } else {
+                                            question.setText("Click on the button 'finish'");
+                                            answer1.setText(null);
+                                            answer2.setText(null);
+                                            answer3.setText(null);
+                                            answer4.setText(null);
+                                        }
+                                    }
+                                }.start();
+
+                            } else {
+                                question.setText("Click on the button 'finish'");
+                                answer1.setText(null);
+                                answer2.setText(null);
+                                answer3.setText(null);
+                                answer4.setText(null);
+                            }
+                        }
+                    }.start();}
                 if (id==1 || id==4) {
                     score = score + 5;
                     score2.setText(String.valueOf(score));
@@ -285,6 +671,115 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
             case R.id.answer4:
                 if ((i%2)==1) {
+                    timer.cancel();
+                    if (id!=0)  {timer = new CountDownTimer(15000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            id++;
+                            if (life == 3) {
+                                heart3.setImageDrawable(null);
+                                life = 2;
+                            } else if (life == 2) {
+                                heart2.setImageDrawable(null);
+                                life = 1;
+                            } else if (life == 1) {
+                                heart1.setImageDrawable(null);
+                                life = 0;
+                                id=0;
+                            }
+                            if (id!=0) {
+                                questions = databaseAccess.getQuotes(id);
+                                question.setText(questions[0]);
+                                answer1.setText(questions[1]);
+                                answer2.setText(questions[2]);
+                                answer3.setText(questions[3]);
+                                answer4.setText(questions[4]);
+                                timer = new CountDownTimer(15000, 1000) {
+
+                                    public void onTick(long millisUntilFinished) {
+                                        time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                    }
+
+                                    public void onFinish() {
+                                        id++;
+                                        if (life == 3) {
+                                            heart3.setImageDrawable(null);
+                                            life = 2;
+                                        } else if (life == 2) {
+                                            heart2.setImageDrawable(null);
+                                            life = 1;
+                                        } else if (life == 1) {
+                                            heart1.setImageDrawable(null);
+                                            life = 0;
+                                            id=0;
+                                        }
+                                        if (id!=0) {
+                                            questions = databaseAccess.getQuotes(id);
+                                            question.setText(questions[0]);
+                                            answer1.setText(questions[1]);
+                                            answer2.setText(questions[2]);
+                                            answer3.setText(questions[3]);
+                                            answer4.setText(questions[4]);
+                                            timer =  new CountDownTimer(15000, 1000) {
+
+                                                public void onTick(long millisUntilFinished) {
+                                                    time.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                }
+
+                                                public void onFinish() {
+                                                    id++;
+                                                    if (life == 3) {
+                                                        heart3.setImageDrawable(null);
+                                                        life = 2;
+                                                    } else if (life == 2) {
+                                                        heart2.setImageDrawable(null);
+                                                        life = 1;
+                                                    } else if (life == 1) {
+                                                        heart1.setImageDrawable(null);
+                                                        life = 0;
+                                                        id=0;
+                                                    }
+                                                    if (id!=0) {
+                                                        questions = databaseAccess.getQuotes(id);
+                                                        question.setText(questions[0]);
+                                                        answer1.setText(questions[1]);
+                                                        answer2.setText(questions[2]);
+                                                        answer3.setText(questions[3]);
+                                                        answer4.setText(questions[4]);
+
+                                                    } else {
+                                                        question.setText("Click on the button 'finish'");
+                                                        answer1.setText(null);
+                                                        answer2.setText(null);
+                                                        answer3.setText(null);
+                                                        answer4.setText(null);
+                                                    }
+                                                }
+                                            }.start();
+
+                                        } else {
+                                            question.setText("Click on the button 'finish'");
+                                            answer1.setText(null);
+                                            answer2.setText(null);
+                                            answer3.setText(null);
+                                            answer4.setText(null);
+                                        }
+                                    }
+                                }.start();
+
+                            } else {
+                                question.setText("Click on the button 'finish'");
+                                answer1.setText(null);
+                                answer2.setText(null);
+                                answer3.setText(null);
+                                answer4.setText(null);
+                            }
+                        }
+                    }.start();}
                 if (id==5) {
                     score = score + 5;
                     score2.setText(String.valueOf(score));

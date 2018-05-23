@@ -69,6 +69,8 @@ public class Activity4 extends AppCompatActivity implements View.OnClickListener
             case R.id.question2:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                MainActivity.k=1;
+                MainActivity.p=0;
                 break;
             case R.id.english: information.setText("  INFORMATION!"+"\n"+" Your task is to protect the station from the flying asteroids, quickly and correctly solving mathematical sums."+"\n"+"  If you want to start the game, click on 'play', and then on the 'start' button in the lower left corner of the screen. You have three lives, with each wrong answer one of them is taken away. If you want to end the game before, click on the 'finish' button in the lower left corner of the screen." +"\n"+"  The game ends in three cases: " +"\n"+"  1) you have expended all lives; " +"\n"+"  2) you answered all the questions; " + "\n" + "  3) you have completed the game yourself." +"\n"+" We wish good luck and pleasant pastime!");
                 break;

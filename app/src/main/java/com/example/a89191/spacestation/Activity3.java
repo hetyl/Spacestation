@@ -84,6 +84,8 @@ public class Activity3 extends AppCompatActivity implements View.OnClickListener
             case R.id.arrow2:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                MainActivity.k=1;
+                MainActivity.p=0;
                 break;
             default:
                 break;

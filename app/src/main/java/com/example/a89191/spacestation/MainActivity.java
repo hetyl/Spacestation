@@ -2,6 +2,7 @@ package com.example.a89191.spacestation;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     Button play;
     Button score;
     ImageButton question1;
+    MediaPlayer mPlayer;
+    ImageButton sound;
+    static int p=0;
+    static int k;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         findViewById(R.id.star18).setRotation(35);
         findViewById(R.id.star20).setRotation(300);
         findViewById(R.id.star8).setRotation(165);
+        mPlayer=MediaPlayer.create(this, R.raw.music);
+        if (k==0 || mPlayer==null) {
+            mPlayer.start();
+            k++;
+        }
+        sound=(ImageButton) findViewById(R.id.sound);
+        sound.setOnClickListener(this);
         //ImageView meteorite = (ImageView)  findViewById(R.id.meteorite);
        // float density = getApplicationContext().getResources().getDisplayMetrics().density;
         //meteorite.setLayoutParams(new ActionBar.LayoutParams((int) (density * 40), (int) (density * 80)));
@@ -56,9 +68,35 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
               Intent intent1 = new Intent (this, Activity3.class);
               startActivity(intent1);
               break;
+          case R.id.sound:
+              if ((p % 2) ==0) {
+                  mPlayer.pause();
+                  p++;
+                  sound.setImageDrawable(getResources().getDrawable(R.drawable.sound_off));
+              } else {
+                  mPlayer.start();
+                  p++;
+                  sound.setImageDrawable(getResources().getDrawable(R.drawable.sound_on));
+              }
+              break;
           default:
               break;
 
       }
+    }
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPlayer.isPlaying()) {
+            stopPlay();
+        }
+    }
+    private void stopPlay(){
+        mPlayer.stop();
+        try {
+            mPlayer.prepare();
+            mPlayer.seekTo(0);
+        }
+        catch (Throwable t) {
+        }
     }
 }
