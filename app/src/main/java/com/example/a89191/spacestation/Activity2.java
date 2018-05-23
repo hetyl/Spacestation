@@ -285,15 +285,15 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     }.start();}
                     if (id == 7 || id == 9) {
                         score = score + 10;
-                        score2.setText(String.valueOf(score));
+                        score2.setText("score: " + String.valueOf(score));
                     }
                     if (id == 15) {
                         score = score + 15;
-                        score2.setText(String.valueOf(score));
+                        score2.setText("score: " +String.valueOf(score));
                     }
                     if (id == 20) {
                         score = score + 20;
-                        score2.setText(String.valueOf(score));
+                        score2.setText("score: " +String.valueOf(score));
                         id=0;
                         question.setText("Click on the button 'finish'");
                         answer1.setText(null);
@@ -448,15 +448,15 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     }.start();}
                 if (id==2 || id==3) {
                     score = score + 5;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==11 || id==12 || id==13) {
                     score = score + 15;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==17 || id==18) {
                     score = score + 20;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==20) {
                     id=0;
@@ -613,19 +613,19 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     }.start();}
                 if (id==1 || id==4) {
                     score = score + 5;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==10) {
                     score = score + 10;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==14) {
                     score = score + 15;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==19) {
                     score = score + 20;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==20) {
                     id=0;
@@ -782,15 +782,15 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     }.start();}
                 if (id==5) {
                     score = score + 5;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==6 || id==8) {
                     score = score + 10;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==16) {
                     score = score + 20;
-                    score2.setText(String.valueOf(score));
+                    score2.setText("score: " +String.valueOf(score));
                 }
                 if (id==20) {
                     id=0;
