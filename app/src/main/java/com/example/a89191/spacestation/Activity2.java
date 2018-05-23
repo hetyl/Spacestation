@@ -154,6 +154,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                             heart1.setImageDrawable(null);
                                             life = 0;
                                             id=0;
+                                            time.setText("seconds remaining: 0");
                                             question.setText("Click on the button 'finish'");
                                             answer1.setText(null);
                                             answer2.setText(null);
@@ -255,6 +256,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                                         answer4.setText(questions[4]);
 
                                                     } else {
+                                                        timer.cancel();
+                                                        time.setText("seconds remaining: 0");
                                                         question.setText("Click on the button 'finish'");
                                                         answer1.setText(null);
                                                         answer2.setText(null);
@@ -265,6 +268,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                             }.start();
 
                                         } else {
+                                            timer.cancel();
+                                            time.setText("seconds remaining: 0");
                                             question.setText("Click on the button 'finish'");
                                             answer1.setText(null);
                                             answer2.setText(null);
@@ -275,6 +280,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                 }.start();
 
                             } else {
+                                timer.cancel();
+                                time.setText("seconds remaining: 0");
                                 question.setText("Click on the button 'finish'");
                                 answer1.setText(null);
                                 answer2.setText(null);
@@ -295,6 +302,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                         score = score + 20;
                         score2.setText("score: " +String.valueOf(score));
                         id=0;
+                        timer.cancel();
+                        time.setText("seconds remaining: 0");
                         question.setText("Click on the button 'finish'");
                         answer1.setText(null);
                         answer2.setText(null);
@@ -317,6 +326,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                     }
                     if (life == 0) {
                         id=0;
+                        timer.cancel();
+                        time.setText("seconds remaining: 0");
                         question.setText("Click on the button 'finish'");
                         answer1.setText(null);
                         answer2.setText(null);
@@ -418,6 +429,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                                         answer4.setText(questions[4]);
 
                                                     } else {
+                                                        timer.cancel();
+                                                        time.setText("seconds remaining: 0");
                                                         question.setText("Click on the button 'finish'");
                                                         answer1.setText(null);
                                                         answer2.setText(null);
@@ -428,6 +441,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                             }.start();
 
                                         } else {
+                                            timer.cancel();
+                                            time.setText("seconds remaining: 0");
                                             question.setText("Click on the button 'finish'");
                                             answer1.setText(null);
                                             answer2.setText(null);
@@ -438,6 +453,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                 }.start();
 
                             } else {
+                                timer.cancel();
+                                time.setText("seconds remaining: 0");
                                 question.setText("Click on the button 'finish'");
                                 answer1.setText(null);
                                 answer2.setText(null);
@@ -460,6 +477,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
                 if (id==20) {
                     id=0;
+                    timer.cancel();
+                    time.setText("seconds remaining: 0");
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -482,6 +501,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
                 if (life==0) {
                     id=0;
+                    timer.cancel();
+                    time.setText("seconds remaining: 0");
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -583,6 +604,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                                         answer4.setText(questions[4]);
 
                                                     } else {
+                                                        timer.cancel();
+                                                        time.setText("seconds remaining: 0");
                                                         question.setText("Click on the button 'finish'");
                                                         answer1.setText(null);
                                                         answer2.setText(null);
@@ -593,6 +616,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                             }.start();
 
                                         } else {
+                                            timer.cancel();
+                                            time.setText("seconds remaining: 0");
                                             question.setText("Click on the button 'finish'");
                                             answer1.setText(null);
                                             answer2.setText(null);
@@ -603,6 +628,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                 }.start();
 
                             } else {
+                                timer.cancel();
+                                time.setText("seconds remaining: 0");
                                 question.setText("Click on the button 'finish'");
                                 answer1.setText(null);
                                 answer2.setText(null);
@@ -629,6 +656,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
                 if (id==20) {
                     id=0;
+                    timer.cancel();
+                    time.setText("seconds remaining: 0");
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -651,6 +680,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
                 if (life==0) {
                     id=0;
+                    timer.cancel();
+                    time.setText("seconds remaining: 0");
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -752,6 +783,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                                         answer4.setText(questions[4]);
 
                                                     } else {
+                                                        timer.cancel();
+                                                        time.setText("seconds remaining: 0");
                                                         question.setText("Click on the button 'finish'");
                                                         answer1.setText(null);
                                                         answer2.setText(null);
@@ -762,6 +795,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                             }.start();
 
                                         } else {
+                                            timer.cancel();
+                                            time.setText("seconds remaining: 0");
                                             question.setText("Click on the button 'finish'");
                                             answer1.setText(null);
                                             answer2.setText(null);
@@ -772,6 +807,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                                 }.start();
 
                             } else {
+                                timer.cancel();
+                                time.setText("seconds remaining: 0");
                                 question.setText("Click on the button 'finish'");
                                 answer1.setText(null);
                                 answer2.setText(null);
@@ -794,6 +831,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
                 if (id==20) {
                     id=0;
+                    timer.cancel();
+                    time.setText("seconds remaining: 0");
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
@@ -816,6 +855,8 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
                 }
                 if (life==0) {
                     id=0;
+                    timer.cancel();
+                    time.setText("seconds remaining: 0");
                     question.setText("Click on the button 'finish'");
                     answer1.setText(null);
                     answer2.setText(null);
